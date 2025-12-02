@@ -1,12 +1,12 @@
 import type { ProcessMessageRequest, ChatResponse, ChatbotConfig } from '../types/index';
 
-// Default configuration
+// Default configuration - loads from .env file
 const DEFAULT_CONFIG: ChatbotConfig = {
-    name: 'Google AI Studio Config',
-    apiKey: 'AIzaSyAK3gKDmwXTau9lqHVi_-YnFDLzUL7J9JI', // Will be set by user
-    apiUrl: 'https://generativelanguage.googleapis.com',
-    modelName: 'gemini-2.0-flash',
-    maxTokens: 1000,
+    name: import.meta.env.VITE_CHATBOT_NAME || 'Google AI Studio Config',
+    apiKey: import.meta.env.VITE_API_KEY || '', // Load from .env
+    apiUrl: import.meta.env.VITE_API_URL || 'https://generativelanguage.googleapis.com',
+    modelName: import.meta.env.VITE_MODEL_NAME || 'gemini-2.0-flash',
+    maxTokens: parseInt(import.meta.env.VITE_MAX_TOKENS || '1000'),
     temperature: 0.7,
 };
 
