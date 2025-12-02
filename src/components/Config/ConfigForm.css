@@ -1,0 +1,150 @@
+.config-form-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.config-form-container h2 {
+    color: #185f9f;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.config-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-section {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+.form-section h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #185f9f;
+}
+
+.form-group input[type="password"] {
+    font-family: monospace;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 10px;
+}
+
+.btn-save {
+    background: #2eafea;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-save:hover {
+    background: #2195cc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(46, 175, 234, 0.3);
+}
+
+.btn-save:active {
+    transform: translateY(0);
+}
+
+.save-indicator {
+    color: #28a745;
+    font-weight: 600;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.config-info {
+    margin-top: 30px;
+    padding: 20px;
+    background: #e8f4f8;
+    border-left: 4px solid #185f9f;
+    border-radius: 6px;
+}
+
+.config-info h3 {
+    color: #185f9f;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.config-info ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.config-info li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.config-info a {
+    color: #2eafea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.config-info a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,27 @@
+/* ===== CHAT LAUNCHER BUTTON ===== */
+.o_chatbot_launcher {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001;
+    background: #185f9f;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.o_chatbot_launcher:hover {
+    background: #124a7a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.o_chatbot_launcher:active {
+    transform: translateY(0);
+}
