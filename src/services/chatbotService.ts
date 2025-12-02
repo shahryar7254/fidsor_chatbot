@@ -9,7 +9,7 @@ const DEFAULT_CONFIG: ChatbotConfig = {
     maxTokens: parseInt(import.meta.env.VITE_MAX_TOKENS || '1000'),
     temperature: 0.7,
 };
-
+console.log(DEFAULT_CONFIG);
 class ChatbotService {
     private config: ChatbotConfig = DEFAULT_CONFIG;
 
@@ -154,6 +154,12 @@ Question: ${prompt}`;
             if (!response.ok) {
                 const errorText = await response.text();
                 console.error('API Error:', errorText);
+
+                // Handle rate limit error (429)
+                if (response.status === 429) {
+                    return `⚠️ Rate limit reached. Please wait a moment and try again.\n\nTip: You've made too many requests. The free tier allows 60 requests per minute. Please wait 1-2 minutes.`;
+                }
+
                 return `API Error: Received status code ${response.status}`;
             }
 
