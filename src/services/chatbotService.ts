@@ -75,10 +75,13 @@ class ChatbotService {
         try {
             console.log(`🌍 Extracting URL: ${url}`);
 
-            // NOTE: Browser security (CORS) prevents us from scraping websites directly from the frontend.
-            // We must use a backend server or a proxy to fetch the website content.
+            // Use environment variable for backend URL (for production deployment)
+            const backendUrl = import.meta.env.VITE_BACKEND_URL || '';
+            const apiEndpoint = backendUrl ? `${backendUrl}/api/extract-url` : '/api/extract-url';
 
-            const response = await fetch('/api/extract-url', {
+            console.log(`📡 Using backend: ${apiEndpoint}`);
+
+            const response = await fetch(apiEndpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url }),

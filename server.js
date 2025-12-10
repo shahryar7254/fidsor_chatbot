@@ -20,10 +20,16 @@ app.post('/api/extract-url', async (req, res) => {
 
     let browser;
     try {
-        // Launch browser
+        // Launch browser with explicit path
         browser = await puppeteer.launch({
             headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            executablePath: puppeteer.executablePath(),
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-gpu'
+            ],
         });
 
         const page = await browser.newPage();
@@ -74,14 +80,14 @@ app.post('/api/extract-url', async (req, res) => {
             console.log(`  📄 Crawling page ${pageCount}/${maxPages}: ${currentUrl}`);
 
             try {
-                // Navigate to URL - ULTRA FAST MODE
+                // Navigate to URL
                 await page.goto(currentUrl, {
-                    waitUntil: 'domcontentloaded',
-                    timeout: 10000
+                    waitUntil: 'networkidle2',
+                    timeout: 60000
                 });
 
-                // Minimal wait for maximum speed (400ms)
-                await new Promise(r => setTimeout(r, 400));
+                // Wait for JavaScript to render (3000ms - safer for SPAs)
+                await new Promise(r => setTimeout(r, 3000));
 
                 // Try to interact with navigation menus
                 try {
@@ -92,7 +98,7 @@ app.post('/api/extract-url', async (req, res) => {
                             item.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
                         });
                     });
-                    await new Promise(r => setTimeout(r, 100));
+                    await new Promise(r => setTimeout(r, 300));
                 } catch (e) {
                     // Menu interaction failed, continue
                 }
@@ -234,6 +240,6 @@ app.listen(port, () => {
     console.log(`📡 Endpoint: POST /api/extract-url`);
     console.log(`🕷️  Will crawl up to 1500 pages per website`);
     console.log(`⭐ Prioritizes: About, Services, Products, Career, Team, Contact, etc.`);
-    console.log(`⚡ ULTRA FAST MODE: 0.4s wait per page (~8-10 mins for 1000 pages)`);
+    console.log(`⚡ OPTIMIZED MODE: 0.6s wait per page (~12-15 mins for 1000 pages)`);
     console.log(`🌐 Works with ANY website!`);
 });
